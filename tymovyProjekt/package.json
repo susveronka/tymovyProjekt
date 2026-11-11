@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "chart.js": "^4.6.1"
+    "chart.js": "^4.6.1",
+    "qr-creator": "^1.0.0"
   }
 }
