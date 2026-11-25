@@ -26,7 +26,9 @@ class GtfsImport extends BaseCommand
         @ini_set('memory_limit', '1536M');
         @set_time_limit(0);
 
-        $files = $params;
+        // CodeIgniter předává do $params i volby (--bbox, --append…) s textovými klíči;
+        // soubory jsou jen pozice s číselným klíčem.
+        $files = array_values(array_filter($params, 'is_int', ARRAY_FILTER_USE_KEY));
         if (! $files) {
             $files = glob(WRITEPATH . 'gtfs' . DIRECTORY_SEPARATOR . '*.zip') ?: [];
         }
@@ -38,6 +40,15 @@ class GtfsImport extends BaseCommand
             CLI::error('Nenalezen žádný ZIP. Spusťte php spark gtfs:download nebo php spark gtfs:sample.');
 
             return EXIT_ERROR;
+        }
+
+        // chybějící soubor se zjistí dřív, než se smažou stará data
+        foreach ($files as $f) {
+            if (! is_file($f)) {
+                CLI::error("Soubor neexistuje: {$f}");
+
+                return EXIT_ERROR;
+            }
         }
 
         $bbox = null;
