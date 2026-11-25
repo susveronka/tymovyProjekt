@@ -35,6 +35,7 @@ Skutečná data (JDF_merged_GTFS.zip pro autobusy ≈ 125 MB, CZPTT_GTFS.zip pro
 ```
 php spark gtfs:download
 php spark gtfs:import --bbox "49.00,17.30,49.15,17.60"            # okolí Uherského Hradiště
+správný: php spark gtfs:import writable/gtfs/JDF_merged_GTFS.zip --bbox "49.00,17.30,49.15,17.60"
 php spark gtfs:import --append --bbox "49.75,18.20,49.95,18.55"   # okolí Orlové a Ostravy
 ```
 

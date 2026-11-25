@@ -124,3 +124,7 @@ _modules/*
 
 /results/
 /phpunit.xml
+
+# Stažená GTFS data jsou příliš velká a mají se obnovovat příkazem gtfs:download.
+/writable/gtfs/*.zip
+!/writable/gtfs/ukazka_GTFS.zip
